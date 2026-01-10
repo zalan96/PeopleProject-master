@@ -54,6 +54,7 @@ public class PersonStatistics {
     public boolean isAnyoneFailing() {
         return person.stream()
                 .filter(Person::isStudent)
-                .anyMatch(student -> student.getScore() < 40);
+                        .anyMatch(p -> p.getScore() < 40);
+
     }
 }

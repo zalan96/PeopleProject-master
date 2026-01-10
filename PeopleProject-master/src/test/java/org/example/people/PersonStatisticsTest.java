@@ -12,22 +12,11 @@ public class PersonStatisticsTest {
 
     private PersonStatistics personStatistics;
 
-    // Helper method to create a person with all fields
-    private Person createPerson(int id, String name, int age, boolean isStudent, int score) {
-        var person = new Person();
-        person.setId(id);
-        person.setName(name);
-        person.setAge(age);
-        person.setStudent(isStudent);
-        person.setScore(score);
-        return person;
-    }
-
     @Test
     public void test_getAverageAge_withSameAges() {
-        var person1 = createPerson(1, "Anna", 20, true, 85);
-        var person2 = createPerson(2, "Béla", 20, true, 90);
-        var person3 = createPerson(3, "Csaba", 20, false, 75);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(85).build();
+        var person2 = Person.builder().id(2).name("Béla").age(20).isStudent(true).score(90).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(20).isStudent(false).score(75).build();
         var persons = Arrays.asList(person1, person2, person3);
 
         personStatistics = new PersonStatistics(persons);
@@ -38,9 +27,9 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getAverageAge_withDifferentAges() {
-        var person1 = createPerson(1, "Anna", 18, true, 85);
-        var person2 = createPerson(2, "Béla", 22, true, 90);
-        var person3 = createPerson(3, "Csaba", 25, false, 75);
+        var person1 = Person.builder().id(1).name("Anna").age(18).isStudent(true).score(85).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(true).score(90).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(25).isStudent(false).score(75).build();
         var persons = Arrays.asList(person1, person2, person3);
 
         personStatistics = new PersonStatistics(persons);
@@ -51,9 +40,9 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getNumberOfStudents_allStudents() {
-        var person1 = createPerson(1, "Anna", 20, true, 85);
-        var person2 = createPerson(2, "Béla", 22, true, 90);
-        var person3 = createPerson(3, "Csaba", 19, true, 75);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(85).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(true).score(90).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(75).build();
         var persons = Arrays.asList(person1, person2, person3);
 
         personStatistics = new PersonStatistics(persons);
@@ -64,10 +53,10 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getNumberOfStudents_mixedStudents() {
-        var person1 = createPerson(1, "Anna", 20, true, 85);
-        var person2 = createPerson(2, "Béla", 22, false, 90);
-        var person3 = createPerson(3, "Csaba", 19, true, 75);
-        var person4 = createPerson(4, "Dóra", 25, false, 88);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(85).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(false).score(90).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(75).build();
+        var person4 = Person.builder().id(4).name("Dóra").age(25).isStudent(false).score(88).build();
         var persons = Arrays.asList(person1, person2, person3, person4);
 
         personStatistics = new PersonStatistics(persons);
@@ -78,9 +67,9 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getPersonWithHighestScore_clearWinner() {
-        var person1 = createPerson(1, "Anna", 20, true, 41);
-        var person2 = createPerson(2, "Béla", 22, true, 50);
-        var person3 = createPerson(3, "Csaba", 19, true, 100);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(41).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(true).score(50).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(100).build();
         var persons = Arrays.asList(person1, person2, person3);
 
         personStatistics = new PersonStatistics(persons);
@@ -91,9 +80,9 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getPersonWithHighestScore_differentWinner() {
-        var person1 = createPerson(1, "Anna", 20, true, 95);
-        var person2 = createPerson(2, "Béla", 22, false, 70);
-        var person3 = createPerson(3, "Csaba", 19, true, 85);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(95).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(false).score(70).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(85).build();
         var persons = Arrays.asList(person1, person2, person3);
 
         personStatistics = new PersonStatistics(persons);
@@ -104,10 +93,10 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getAverageScoreOfStudents_allSameScore() {
-        var person1 = createPerson(1, "Anna", 20, true, 90);
-        var person2 = createPerson(2, "Béla", 22, true, 90);
-        var person3 = createPerson(3, "Csaba", 19, true, 90);
-        var person4 = createPerson(4, "Dóra", 25, false, 100);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(90).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(true).score(90).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(90).build();
+        var person4 = Person.builder().id(4).name("Dóra").age(25).isStudent(false).score(100).build();
         var persons = Arrays.asList(person1, person2, person3, person4);
 
         personStatistics = new PersonStatistics(persons);
@@ -118,10 +107,10 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getAverageScoreOfStudents_differentScores() {
-        var person1 = createPerson(1, "Anna", 20, true, 75);
-        var person2 = createPerson(2, "Béla", 22, true, 85);
-        var person3 = createPerson(3, "Csaba", 19, true, 80);
-        var person4 = createPerson(4, "Dóra", 25, false, 100);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(75).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(true).score(85).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(80).build();
+        var person4 = Person.builder().id(4).name("Dóra").age(25).isStudent(false).score(100).build();
         var persons = Arrays.asList(person1, person2, person3, person4);
 
         personStatistics = new PersonStatistics(persons);
@@ -132,9 +121,9 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getOldestStudent_withNonStudents() {
-        var person1 = createPerson(1, "Anna", 18, true, 85);
-        var person2 = createPerson(2, "Béla", 83, false, 90);
-        var person3 = createPerson(3, "Csaba", 22, true, 75);
+        var person1 = Person.builder().id(1).name("Anna").age(18).isStudent(true).score(85).build();
+        var person2 = Person.builder().id(2).name("Béla").age(83).isStudent(false).score(90).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(22).isStudent(true).score(75).build();
         var persons = Arrays.asList(person1, person2, person3);
 
         personStatistics = new PersonStatistics(persons);
@@ -145,10 +134,10 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_getOldestStudent_differentOldest() {
-        var person1 = createPerson(1, "Anna", 25, true, 85);
-        var person2 = createPerson(2, "Béla", 30, false, 90);
-        var person3 = createPerson(3, "Csaba", 19, true, 75);
-        var person4 = createPerson(4, "Dóra", 21, true, 88);
+        var person1 = Person.builder().id(1).name("Anna").age(25).isStudent(true).score(85).build();
+        var person2 = Person.builder().id(2).name("Béla").age(30).isStudent(false).score(90).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(75).build();
+        var person4 = Person.builder().id(4).name("Dóra").age(21).isStudent(true).score(88).build();
         var persons = Arrays.asList(person1, person2, person3, person4);
 
         personStatistics = new PersonStatistics(persons);
@@ -159,10 +148,10 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_isAnyoneFailing_hasFailingStudent() {
-        var person1 = createPerson(1, "Anna", 20, true, 35);
-        var person2 = createPerson(2, "Béla", 22, true, 80);
-        var person3 = createPerson(3, "Csaba", 19, true, 100);
-        var person4 = createPerson(4, "Dóra", 25, false, 25);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(35).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(true).score(80).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(100).build();
+        var person4 = Person.builder().id(4).name("Dóra").age(25).isStudent(false).score(25).build();
         var persons = Arrays.asList(person1, person2, person3, person4);
 
         personStatistics = new PersonStatistics(persons);
@@ -173,10 +162,10 @@ public class PersonStatisticsTest {
 
     @Test
     public void test_isAnyoneFailing_noFailingStudents() {
-        var person1 = createPerson(1, "Anna", 20, true, 90);
-        var person2 = createPerson(2, "Béla", 22, true, 80);
-        var person3 = createPerson(3, "Csaba", 19, true, 100);
-        var person4 = createPerson(4, "Dóra", 25, false, 10);
+        var person1 = Person.builder().id(1).name("Anna").age(20).isStudent(true).score(90).build();
+        var person2 = Person.builder().id(2).name("Béla").age(22).isStudent(true).score(80).build();
+        var person3 = Person.builder().id(3).name("Csaba").age(19).isStudent(true).score(100).build();
+        var person4 = Person.builder().id(4).name("Dóra").age(25).isStudent(false).score(10).build();
         var persons = Arrays.asList(person1, person2, person3, person4);
 
         personStatistics = new PersonStatistics(persons);
